@@ -6,8 +6,14 @@ export default function Document() {
     <Html lang="en">
       <Head>
         <GoogleFonts href="https://fonts.googleapis.com/css2?family=Tilt+Neon&display=swap" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Tilt+Neon&display=swap"
+          rel="stylesheet"
+        />
       </Head>
-      <body style={{ fontFamily: "Tilt Neon" }}>
+      <body>
         <Main />
         <NextScript />
       </body>
