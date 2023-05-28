@@ -13,4 +13,9 @@ export const theme = createTheme({
       },
     },
   },
+  palette: {
+    wafer: {
+      main: "#d5bdaf ",
+    },
+  },
 });
