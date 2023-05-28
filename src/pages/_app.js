@@ -1,12 +1,9 @@
-import { theme } from "@/styles/theme";
-import { ThemeProvider } from "@mui/material/styles";
-import CssBaseline from "@mui/material/CssBaseline";
+import Providers from "./providers";
 
 export default function App({ Component, pageProps }) {
   return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
+    <Providers>
       <Component {...pageProps} />
-    </ThemeProvider>
+    </Providers>
   );
 }
