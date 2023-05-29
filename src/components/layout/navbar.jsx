@@ -18,7 +18,9 @@ const Navbar = () => {
               </Button>
             )}
           </Box>
-          <Typography>Project manager</Typography>
+          <Typography color="#fff" textTransform="uppercase" fontWeight="700">
+            Project manager
+          </Typography>
         </Box>
       </Container>
     </Box>
