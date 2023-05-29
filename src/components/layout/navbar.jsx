@@ -8,13 +8,15 @@ const Navbar = () => {
   const handleSidebar = () => setIsOpen(!isOpen);
 
   return (
-    <Box bgcolor="#f5ebe0" py={2}>
+    <Box bgcolor="#118ab2" py={3}>
       <Container maxWidth="lg">
         <Box display="flex" alignItems="center">
           <Box flex={1}>
-            <Button onClick={handleSidebar} variant="contained" color="wafer">
-              new todo
-            </Button>
+            {!isOpen && (
+              <Button onClick={handleSidebar} variant="contained" color="wafer">
+                new todo
+              </Button>
+            )}
           </Box>
           <Typography>Project manager</Typography>
         </Box>
