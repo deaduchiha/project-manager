@@ -1,0 +1,4 @@
+const SignupPage = () => {
+  return <h1>signup page</h1>;
+};
+export default SignupPage;

@@ -18,9 +18,9 @@ const Navbar = () => {
               </Button>
             )}
           </Box>
-          <Typography color="#fff" textTransform="uppercase" fontWeight="700">
+          <Button variant="text" sx={{ color: "#fff" }} color="inherit">
             Project manager
-          </Typography>
+          </Button>
         </Box>
       </Container>
     </Box>

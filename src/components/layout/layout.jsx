@@ -6,7 +6,7 @@ import Sidebar from "./sidebar";
 export const HandleSidebar = createContext();
 
 const Layout = ({ children }) => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(true);
 
   return (
     <>
