@@ -8,7 +8,7 @@ const Navbar = () => {
   const handleSidebar = () => setIsOpen(!isOpen);
 
   return (
-    <Box bgcolor="#118ab2" py={3}>
+    <Box bgcolor="#118ab2" py={3} height="11vh">
       <Container maxWidth="lg">
         <Box display="flex" alignItems="center">
           <Box flex={1}>
