@@ -1,9 +1,16 @@
-import { Button, Drawer, Typography } from "@mui/material";
+import { Button, Drawer } from "@mui/material";
 import { HandleSidebar } from "./layout";
 import { useContext } from "react";
+import Link from "next/link";
 
 const Sidebar = () => {
   const { setIsOpen, isOpen } = useContext(HandleSidebar);
+
+  const todos = [
+    { label: "Todos", href: "todos" },
+    { label: "Add Todo", href: "add-todo" },
+    { label: "Profile", href: "profile" },
+  ];
 
   return (
     <Drawer
@@ -32,7 +39,13 @@ const Sidebar = () => {
         close
       </Button>
 
-      <Typography color="#fff">items</Typography>
+      {todos.map((title) => (
+        <Link key={title.label} href={title.href}>
+          <Button variant="text" sx={{ color: "#fff" }}>
+            {title.label}
+          </Button>
+        </Link>
+      ))}
     </Drawer>
   );
 };
