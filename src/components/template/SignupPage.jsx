@@ -15,7 +15,7 @@ const SignupPage = () => {
       const url = "/api/auth/signup";
       const res = await axios.post(url, { email, password });
       const data = res.data;
-      console.log(res.data);
+      console.log(data);
 
       if (res.data.status === "success") router.push("/signin");
     } catch (error) {
