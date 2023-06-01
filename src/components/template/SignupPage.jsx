@@ -1,7 +1,28 @@
 import { Box, Button, TextField, Typography } from "@mui/material";
+import axios from "axios";
 import Link from "next/link";
+import { useRouter } from "next/router";
+import { useState } from "react";
 
 const SignupPage = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const router = useRouter();
+
+  const handleSignup = async () => {
+    try {
+      const url = "/api/auth/signup";
+      const res = await axios.post(url, { email, password });
+      const data = res.data;
+      console.log(res.data);
+
+      if (res.data.status === "success") router.push("/signin");
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <>
       <Box
@@ -15,12 +36,25 @@ const SignupPage = () => {
         <Typography variant="h6" sx={{ userSelect: "none" }}>
           Registration Form
         </Typography>
-        <TextField label="Email" type="email" variant="outlined" />
-        <TextField label="Password" type="password" variant="outlined" />
+        <TextField
+          label="Email"
+          type="email"
+          variant="outlined"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <TextField
+          label="Password"
+          type="password"
+          variant="outlined"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
         <Button
           variant="contained"
           color="wafer"
           sx={{ textTransform: "inherit" }}
+          onClick={handleSignup}
         >
           Register
         </Button>
