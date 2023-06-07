@@ -1,12 +1,26 @@
 import { Box, Button, TextField, Typography } from "@mui/material";
 import Link from "next/link";
 import { useState } from "react";
+import { signIn } from "next-auth/react";
+import { useRouter } from "next/router";
 
 const SigninPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSignin = () => {};
+  const router = useRouter();
+
+  const handleSignin = async () => {
+    const res = await signIn("credentials", {
+      email,
+      password,
+      redirect: false,
+    });
+
+    if (!res.error) {
+      router.push("/");
+    }
+  };
 
   return (
     <>
