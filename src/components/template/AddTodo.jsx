@@ -1,22 +1,28 @@
-import {
-  Box,
-  Button,
-  FormControl,
-  FormControlLabel,
-  FormLabel,
-  Input,
-  InputLabel,
-  Radio,
-  RadioGroup,
-  TextField,
-  Typography,
-} from "@mui/material";
+import { Box, Button, FormControl, TextField, Typography } from "@mui/material";
 import { useState } from "react";
 import RadioButton from "../elements/RadioButton";
+
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer, toast } from "react-toastify";
 
 const AddTodoPage = () => {
   const [title, setTitle] = useState("");
   const [status, setStatus] = useState("todo");
+
+  const handleAdd = async () => {
+    const res = await fetch("/api/todos", {
+      method: "POST",
+      body: JSON.stringify({ title, status }),
+      headers: { "Content-Type": "application/json" },
+    });
+    const data = await res.json();
+
+    if (data.status === "success") {
+      setTitle("");
+      setStatus("todo");
+      toast.success("Todo added");
+    }
+  };
 
   return (
     <Box>
@@ -62,9 +68,10 @@ const AddTodoPage = () => {
           />
         </FormControl>
       </Box>
-      <Button variant="contained" color="wafer">
+      <Button variant="contained" color="wafer" onClick={handleAdd}>
         add
       </Button>
+      <ToastContainer />
     </Box>
   );
 };

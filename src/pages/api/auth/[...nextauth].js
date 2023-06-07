@@ -6,19 +6,20 @@ import { verifyPassword } from "@/utils/auth";
 import connectDB from "@/utils/connectDB";
 
 export const authOptions = {
-  session: { strategy: "jwt" },
+  session: { jwt: true },
   providers: [
     CredentialsProvider({
-      async authorize(credentials, req) {
+      async authorize(credentials) {
         const { email, password } = credentials;
+
         try {
           await connectDB();
         } catch (error) {
-          throw new Error("error in connection to DB");
+          throw new Error("Error connecting to the database");
         }
 
         if (!email || !password) {
-          throw new Error("Invalid data");
+          throw new Error("Invalid credentials");
         }
 
         const user = await User.findOne({ email: email });
@@ -27,7 +28,7 @@ export const authOptions = {
 
         const isValid = await verifyPassword(password, user.password);
 
-        if (!isValid) throw new Error("User name or password is incorrect");
+        if (!isValid) throw new Error("Incorrect email or password");
 
         return { email };
       },

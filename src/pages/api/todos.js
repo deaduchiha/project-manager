@@ -1,6 +1,6 @@
-import User from "@/models/User";
 import connectDB from "@/utils/connectDB";
 import { getSession } from "next-auth/react";
+import User from "@/models/User";
 
 const handler = async (req, res) => {
   try {
@@ -9,11 +9,8 @@ const handler = async (req, res) => {
     throw new Error("error in connection to DB");
   }
 
-  if (!email || !password) {
-    throw new Error("Invalid data");
-  }
-
   const session = await getSession({ req });
+
   if (!session) {
     return res
       .status(401)
@@ -37,7 +34,7 @@ const handler = async (req, res) => {
     }
 
     user.todos.push({ title, status });
-    user.save;
+    user.save();
 
     res.status(201).json({ status: "success", message: "Todo created" });
   }
